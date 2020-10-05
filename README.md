@@ -17,3 +17,34 @@ try {
 String jsonString = writer.toString();
                 
 ```
+
+```
+fun getDummy(application: Application): String {
+        val inputStream = application.getResources()
+            .openRawResource(com.example.screen_cardinfo.R.raw.restaurant_list);
+        val writer = StringWriter();
+        var buffer = CharBuffer.allocate(1024)
+        try {
+            var reader = BufferedReader(InputStreamReader(inputStream, "UTF-8"));
+            var n: Int
+
+            n = reader.read(buffer)
+
+            while (n != -1) {
+                writer.write(buffer.array(), 0, n);
+                buffer.clear()
+                n = reader.read(buffer)
+            }
+        } catch (e: Exception) {
+        } finally {
+            try {
+                inputStream.close();
+            } catch (e: IOException) {
+                Log.e("sarang", e.toString())
+                e.printStackTrace()
+            }
+        }
+        var jsonString = writer.toString();
+        return jsonString
+    }
+```
