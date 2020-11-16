@@ -104,3 +104,7 @@ object getRawToString {
     }
 }
 ```
+
+```
+val type = TypeToken.getParameterized(ArrayList::class.java, Alarm::class.java).type
+```
